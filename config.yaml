@@ -1,0 +1,52 @@
+# --- Input / Output ---
+images_folder: /path/to/images/folder/   # Folder with input images (Required)
+image_extensions: ['jpg', 'png', 'jpeg'] # Allowed image types (Required)
+
+output:
+  format: 'jpeg'          # Output format: 'jpeg' or 'png'
+  jpeg_quality: 95        # JPEG quality (0-100)
+  png_compression: 1      # PNG compression (0-9)
+  width: 6000             # Resize width (0 to keep original)
+  height: 4000            # Resize height (0 to keep original)
+
+# --- Basic Adjustments ---
+brightness_factor: 10.0   # Adjust brightness (0 = no change)
+saturation_factor: 1.25   # Adjust saturation (1 = no change)
+
+# --- Enhancement Algorithms ---
+
+white_balance:
+  enabled: True
+  algorithm: grayworld    # 'percentile', 'grayworld', 'lab'
+  percentile: 99.0        # Only used for 'percentile' algorithm
+
+denoising:                # Bilateral filter
+  enabled: True
+  diameter: 5             # Neighborhood diameter
+  sigma_color: 50.0       # Color space sigma
+  sigma_space: 50.0       # Coordinate space sigma
+
+local_contrast_enhancement:
+  enabled: True
+  degree: 3               # Enhancement strength
+  smoothing: 0.2          # Smoothing amount
+
+clahe:                    # Contrast Limited Adaptive Histogram Equalization
+  enabled: False
+  kernel_size: 3          # Grid size
+  clip_limit: 1.0         # Contrast limit
+
+lecarm_tonemapping:       # Global tonemapping (can be slow)
+  enabled: False
+  camera_model: sigmoid   # 'sigmoid', 'gamma', 'betagamma', 'preferred'
+  downsampling: 1.0       # Downsample factor (1.0 = none) to speed up
+  scaling: 0.8            # Scaling factor
+
+spatial_tonemapping:      # Local tonemapping (faster)
+  enabled: True
+  smoothing: 0.2          # Edge-preserving smoothing
+  mid_tone: 0.5           # Target mid-tone
+  tonal_width: 0.5        # Tonal range width
+  areas_dark: 0.5         # Dark area adjustment
+  areas_bright: 0.5       # Bright area adjustment
+  preserve_tones: True    # Try to keep original tone distribution
