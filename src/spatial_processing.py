@@ -30,7 +30,7 @@ def get_photometric_mask(illumination, smoothing):
 
     References:
     -----------
-    Source: https://github.com/bbonik/image_enhancement/tree/master
+    Source: https://github.com/bbonik/image_enhancement/blob/master/source/image_enhancement.py
     '''
 
     # internal parameters
